@@ -1,4 +1,4 @@
-# Gerenciamento de estoque de floricultura com POO 
+# App Gerenciamento de Estoque
 ## Descrição
 Desenvolvimento de um sistema de gerenciamento de insumos de uma Floricultura, como trabalho de conclusão da disciplina "UC4" do curso "Técnico em Desenvolvimento de Sistemas"
 
