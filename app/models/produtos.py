@@ -55,7 +55,7 @@ class ProdutosModel:
         self.conn.commit()
         self.conn.close()
     
-    # READ (LISTAR)
+    # READ ALL (LISTAR)
     def list_produtos(self):
         self.connect()
         
@@ -69,7 +69,7 @@ class ProdutosModel:
         self.conn.commit()
         self.conn.close()    
     
-    # READ (SELECT ONE) Incompleto
+    # READ ONE (SELECT) Incompleto
     # def select_produto(self, produto_id):
     #     self.connect()
         
