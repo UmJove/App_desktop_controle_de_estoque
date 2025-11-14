@@ -21,7 +21,7 @@ class LoginView(ctk.CTkFrame):
         self.frame_form = ctk.CTkFrame(self.frame, fg_color='transparent') 
         self.frame_form.grid(row=0, column=1, padx=(50, 0))
 
-        footer_label = ctk.CTkLabel(self.frame, text="Sistema de Gestão de Funcionários | Desenvolvido por @UmJove | 2025")
+        footer_label = ctk.CTkLabel(self.frame, text="Sistema de Gestão de Estoque | Desenvolvido por @UmJove | 2025")
         footer_label.grid(row=1, column=0, columnspan=2, pady=(100,0))
 
         # Adicionar os widgets

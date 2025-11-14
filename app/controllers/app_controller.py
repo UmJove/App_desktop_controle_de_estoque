@@ -1,7 +1,7 @@
 import customtkinter as ctk
 
-from app.models.funcionarios import FuncionariosModel
-from app.models.produtos import ProdutosModel
+from app.models.funcionarios_model import FuncionariosModel
+from app.models.produtos_model import ProdutosModel
 
 from app.views.login_view import LoginView
 from app.views.home_view import HomeView
