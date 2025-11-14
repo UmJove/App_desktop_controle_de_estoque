@@ -14,49 +14,50 @@ class ProdutosModel:
         self.connect()
         
         self.cursor.execute(
-        """
-            CREATE TABLE IF NOT EXISTS produto(
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                nome TEXT NOT NULL,
-                qtd_estoque INTEGER NOT NULL
-                )
-        """
+            """
+                CREATE TABLE IF NOT EXISTS produto(
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    nome TEXT NOT NULL,
+                    qtd_estoque INTEGER NOT NULL
+                    )
+            """
         )
         
         self.cursor.execute(
-        """
-            CREATE TABLE IF NOT EXISTS lote(
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                produto_id INTEGER NOT NULL,
-                qtd_lote INTEGER NOT NULL,
-                fabricacao TEXT,
-                validade TEXT,
-                registro TEXT,
-                FOREIGN KEY(produto_id) REFERENCES produto(id)
-                )
-        """
+            """
+                CREATE TABLE IF NOT EXISTS lote(
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    produto_id INTEGER NOT NULL,
+                    qtd_lote INTEGER NOT NULL,
+                    fabricacao TEXT NOT NULL,
+                    validade TEXT NOT NULL,
+                    registro TEXT NOT NULL,
+                    responsavel TEXT NOT NULL,
+                    FOREIGN KEY(produto_id) REFERENCES produto(id)
+                    )
+            """
         )
         
         
         self.conn.commit()
         self.conn.close()
     
-    # WRITE
+    # WRITE (INSERT)
     def insert_produto(self, nome, qtd_estoque):
         self.connect()        
         
         self.cursor.execute(
-        """
-            INSERT INTO produto (nome, qtd_estoque) VALUES (?, ?)  
-        """,
-        (nome, qtd_estoque)
+            """
+                INSERT INTO produto (nome, qtd_estoque) VALUES (?, ?)  
+            """,
+            (nome, qtd_estoque)
         )
         
         self.conn.commit()
         self.conn.close()
     
     # READ ALL (LISTAR)
-    def list_produtos(self):
+    def listar_produtos(self):
         self.connect()
         
         self.cursor.execute(

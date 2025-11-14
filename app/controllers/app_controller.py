@@ -18,11 +18,21 @@ class AppController:
         self.login_view = LoginView(self.root, self)
         self.login_view.pack(fill="both", expand=True)        
         
+    # Controle de login do usuário
+    def login(self, username, password):
+        username = None
+        password = None
+        self.show_home()
+                
+    # Mostrar a tela inicial
+    def show_home(self):
+        
+        self.login_view.destroy()
+        self.home_view = HomeView(self.root, self)
+        self.home_view.pack(fill="both", expand=True)
+        
+        
     def run(self):
         self.root.mainloop()
         
 
-
-if __name__ == "__main__":
-    app = AppController()
-    app.run()
