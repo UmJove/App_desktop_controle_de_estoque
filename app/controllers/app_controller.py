@@ -20,15 +20,13 @@ class AppController:
         
     # Controle de login do usuário
     def login(self, username, password):
-        username = None
         password = None
-        self.show_home()
+        self.show_home(username)
                 
     # Mostrar a tela inicial
-    def show_home(self):
-        
+    def show_home(self, username):
         self.login_view.destroy()
-        self.home_view = HomeView(self.root, self)
+        self.home_view = HomeView(self, self.root, username)
         self.home_view.pack(fill="both", expand=True)
         
         

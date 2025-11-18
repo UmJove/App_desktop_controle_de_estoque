@@ -3,27 +3,82 @@ import customtkinter as ctk
 
 class HomeView(ctk.CTkFrame):
     # def __init__(self, user, parent, controller):
-    def __init__(self, parent, controller):
+    def __init__(self, controller, parent, username):
         super().__init__(parent)
         self.controller = controller
-        # self.user = user
+        self.parent = parent
+        self.user = username
         
-        # Menu lateral (widgets)
-        self.side_menu = ctk.CTkFrame(self, width=200)
-        self.side_menu.pack(side='left', fill='y', padx=10, pady=10)
+        self.columnconfigure(0, weight=1)
+        self.rowconfigure(0, weight=0)
+        self.rowconfigure(1, weight=1)
+        
+        # Menu no topo 
+        self.top_menu_fr = ctk.CTkFrame(self, width=200)
+        self.top_menu_fr.grid(row=0, column=0, stick="nsew")
+        
+        # Frame de conteúdo das "abas"
+        self.conteudo_fr = ctk.CTkFrame(self, fg_color="gray")
+        self.conteudo_fr.grid(row=1, column=0, stick="nsew")
+        
+        if "@adm" in username:
+            self.show_top_menu_adm()
+        elif not "@adm" in username:
+            self.show_top_menu_geral()
+        
+       
+        # criar self.btn_sair
 
-        #Botões para o menu lateral
-        self.btn_home = ctk.CTkButton(self.side_menu, text="Home", command=self.show_home)
-        self.btn_home.pack(pady=10, padx=10)
 
-    # A função para mostrar a homepage
-    def show_adm_view(self):
-        self.clear_content()
-        # if "adm" in self.user:
-        welcome_label = ctk.CTkLabel(self.content_frame, text="Adm home!", font=('Arial bold', 20))
-        welcome_label.pack(pady=20)
+
+    # MENU GERAL (FUNCIONÁRIOS)
+    def show_top_menu_geral(self):
+        self.btn_rg_lote = ctk.CTkButton(self.top_menu_fr, text="Registrar\n novo lote", command=self.show_rg_lote)
+        self.btn_rg_lote.pack(padx=10, pady=10, expand=True, side="left")
+        
+        self.btn_ger_produtos = ctk.CTkButton(self.top_menu_fr, text="Gerenciar\nProdutos", command=self.show_ger_produtos)
+        self.btn_ger_produtos.pack(padx=10, pady=10, expand=True, side="left")
+        
+        self.btn_ger_lotes = ctk.CTkButton(self.top_menu_fr, text="Gerenciar\nLotes", command=self.show_ger_lotes)
+        self.btn_ger_lotes.pack(padx=10, pady=10, expand=True, side="left")
+        
+        
+    # MENU ADMINISTRADOR  
+    def show_top_menu_adm(self):
+        self.show_top_menu_geral()
+        
+        self.btn_adm_funcs = ctk.CTkButton(self.top_menu_fr, text="Administrar\nFuncionários", command=self.show_adm_funcs)
+        self.btn_adm_funcs.pack(padx=10, pady=10, expand=True, side="left")
+        
+        
+        
+    # limpar frame de conteúdo
+    def limpar_conteudo(self):
+        for widget in self.conteudo_fr.winfo_children():
+            widget.destroy()
+                       
     
-    def show_func_view(self):
-        self.clear_content()
-        welcome_label = ctk.CTkLabel(self.content_frame, text="Funcionario home!", font=('Arial bold', 20))
-        welcome_label.pack(pady=20)
+    def show_rg_lote(self):
+        self.limpar_conteudo()
+        titulo_sessao = ctk.CTkLabel(self.conteudo_fr, text="RG LOTES")
+        titulo_sessao.pack()
+        
+    def show_ger_produtos(self):
+        self.limpar_conteudo()
+        titulo_sessao = ctk.CTkLabel(self.conteudo_fr, text="GER PRODUTOS")
+        titulo_sessao.pack()
+        
+    def show_ger_lotes(self):
+        self.limpar_conteudo()
+
+        titulo_sessao = ctk.CTkLabel(self.conteudo_fr, text="GER LOTES")
+        titulo_sessao.pack()
+        
+    def show_adm_funcs(self):
+        self.limpar_conteudo()
+    
+        titulo_sessao = ctk.CTkLabel(self.conteudo_fr, text="ADM FUNCIONÁRIOS")
+        titulo_sessao.pack()
+            
+            
+    
