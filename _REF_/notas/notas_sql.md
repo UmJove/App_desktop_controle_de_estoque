@@ -8,3 +8,6 @@ CREATE TABLE track(
   trackartist INTEGER,
   FOREIGN KEY(trackartist) REFERENCES artist(artistid)
 );
+
+
+Imagens utilizadas
