@@ -29,7 +29,10 @@ class AppController:
         self.home_view = HomeView(self, self.root, username)
         self.home_view.pack(fill="both", expand=True)
         
-        
+    def limpar_frame(self, frame):
+        for widget in frame.winfo_children():
+            widget.destroy()
+
     def run(self):
         self.root.mainloop()
         

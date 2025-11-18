@@ -1,4 +1,5 @@
 import customtkinter as ctk
+from app.views.rg_lote_view import RgLoteView
 
 
 class HomeView(ctk.CTkFrame):
@@ -53,29 +54,32 @@ class HomeView(ctk.CTkFrame):
         
         
     # limpar frame de conteúdo
-    def limpar_conteudo(self):
-        for widget in self.conteudo_fr.winfo_children():
-            widget.destroy()
+    def limpar_conteudo_fr(self):
+        self.controller.limpar_frame(self.conteudo_fr)
+
                        
     
     def show_rg_lote(self):
-        self.limpar_conteudo()
-        titulo_sessao = ctk.CTkLabel(self.conteudo_fr, text="RG LOTES")
-        titulo_sessao.pack()
+        self.limpar_conteudo_fr()
+        
+        self.rg_lote_view = RgLoteView(self.conteudo_fr, self.controller)
+        self.rg_lote_view.pack(padx=10, pady=10, fill="both", expand=True)      
+        
+        
         
     def show_ger_produtos(self):
-        self.limpar_conteudo()
+        self.limpar_conteudo_fr()
         titulo_sessao = ctk.CTkLabel(self.conteudo_fr, text="GER PRODUTOS")
         titulo_sessao.pack()
         
     def show_ger_lotes(self):
-        self.limpar_conteudo()
+        self.limpar_conteudo_fr()
 
         titulo_sessao = ctk.CTkLabel(self.conteudo_fr, text="GER LOTES")
         titulo_sessao.pack()
         
     def show_adm_funcs(self):
-        self.limpar_conteudo()
+        self.limpar_conteudo_fr()
     
         titulo_sessao = ctk.CTkLabel(self.conteudo_fr, text="ADM FUNCIONÁRIOS")
         titulo_sessao.pack()
