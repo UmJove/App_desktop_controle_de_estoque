@@ -5,13 +5,13 @@ class LoginView(ctk.CTkFrame):
     def __init__(self, parent, controller):
         super().__init__(parent)
         self.controller = controller
-
-
-        # Pegar imagens
+        self.configure(fg_color="transparent")
+       
+        # Imagem
         login_image = ctk.CTkImage(light_image=Image.open("./assets/imgs/img-login.png"), dark_image=Image.open("./assets/imgs/img-login.png"), size=(350, 350))
         
 
-        # Criar frames
+        # Frames
         self.frame = ctk.CTkFrame(self, corner_radius=10, fg_color='transparent')
         self.frame.pack(pady=(100,0))
 
@@ -24,7 +24,7 @@ class LoginView(ctk.CTkFrame):
         footer_label = ctk.CTkLabel(self.frame, text="Sistema de Gestão de Estoque | Desenvolvido por @UmJove | 2025")
         footer_label.grid(row=1, column=0, columnspan=2, pady=(100,0))
 
-        # Adicionar os widgets
+        # Widgets
         label_image = ctk.CTkLabel(self.frame_image, image=login_image, text='')
         label_image.pack()
 
@@ -40,8 +40,8 @@ class LoginView(ctk.CTkFrame):
         self.error_label = ctk.CTkLabel(self.frame_form, text=" ")
         self.error_label.pack()
 
-        self.login_button = ctk.CTkButton(self.frame_form, text="Login", width=200, command=self.attempt_login)
-        self.login_button.pack(pady=(10, 20))
+        self.btn_entrar = ctk.CTkButton(self.frame_form, text="Entrar", width=200, command=self.attempt_login)
+        self.btn_entrar.pack(pady=(10, 20))
 
     # Função do botão de login
     def attempt_login(self):

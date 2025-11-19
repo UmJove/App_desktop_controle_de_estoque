@@ -199,8 +199,9 @@ if __name__ == "__main__":
 
     # TESTES - CRUD DE PRODUTO
 
-    # database.inserir_produto("Vaso", 10)
-    # database.inserir_produto("Rosa branca", 10)
+    database.inserir_produto("Vaso", 10)
+    database.inserir_produto("Rosa branca", 15)
+    database.inserir_produto("Rosa Amarela", 42)
 
     # print("LISTA DE PRODUTOS")
     # print(database.listar_produtos())    

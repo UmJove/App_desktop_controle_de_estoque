@@ -9,12 +9,15 @@ from app.views.home_view import HomeView
 
 class AppController:
     def __init__(self):
-        self.funcionarios = FuncionariosModel()
-        self.produtos = ProdutosModel()
+        ctk.set_default_color_theme("assets/themes/meu_tema1.json")
+        ctk.set_appearance_mode("light")
+        
+        self.funcionarios_model = FuncionariosModel()
+        self.produtos_model = ProdutosModel()
         self.root = ctk.CTk()
-        self.root.geometry("800x600")
+        self.root.geometry("1280x650")
 
-        # Tela de login
+        # TELA INICIAL - Tela de login
         self.login_view = LoginView(self.root, self)
         self.login_view.pack(fill="both", expand=True)        
         
@@ -33,7 +36,12 @@ class AppController:
         for widget in frame.winfo_children():
             widget.destroy()
 
+
+    def listar_produtos(self):
+        produtos = self.produtos_model.listar_produtos()
+        return produtos
+
+
     def run(self):
         self.root.mainloop()
         
-
