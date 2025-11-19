@@ -19,8 +19,8 @@ class HomeView(ctk.CTkFrame):
         self.rowconfigure(0, weight=1)
         
         # Menu no topo 
-        self.top_menu_fr = ctk.CTkFrame(self, width=200, )# fg_color="transparent")
-        self.top_menu_fr.grid(row=0, column=1, padx=15,pady=10)
+        self.top_menu_fr = ctk.CTkFrame(self, width=200, fg_color="transparent")# fg_color="transparent")
+        self.top_menu_fr.grid(row=0, column=1, padx=15, pady=10)
         
         # Frame de conteúdo das "abas"
         self.conteudo_fr = ctk.CTkFrame(self, fg_color="transparent")

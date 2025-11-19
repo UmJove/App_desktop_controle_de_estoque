@@ -15,7 +15,7 @@ class AppController:
         self.funcionarios_model = FuncionariosModel()
         self.produtos_model = ProdutosModel()
         self.root = ctk.CTk()
-        self.root.geometry("1280x650")
+        self.root.geometry("900x650")
 
         # TELA INICIAL - Tela de login
         self.login_view = LoginView(self.root, self)
