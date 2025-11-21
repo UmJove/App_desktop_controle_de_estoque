@@ -20,8 +20,8 @@ class RgLoteView(ctk.CTkFrame):
         self.rowconfigure(0, weight=0)
         self.rowconfigure(1, weight=1)
 
-        self.titulo_fr = ctk.CTkFrame(self)
-        self.titulo_fr.grid(row=0, column=0, padx=15, pady=15, columnspan=2)
+        self.titulo_fr = ctk.CTkFrame(self, corner_radius=10)
+        self.titulo_fr.grid(row=0, column=0, padx=5, pady=(0,5), columnspan=2)
 
         self.rg_lote_form_fr = ctk.CTkFrame(self)
         self.rg_lote_form_fr.grid(row=1, column=0, padx=50, pady=(0,15), sticky="nsew")
@@ -31,7 +31,7 @@ class RgLoteView(ctk.CTkFrame):
 
         
         titulo_pagina = ctk.CTkLabel(self.titulo_fr, text="TÍTULO DA PÁGINA")
-        titulo_pagina.pack(padx=10, pady=5)
+        titulo_pagina.pack()
         
         ### REGISTRO DE LOTE - Form
         cont_row = 0

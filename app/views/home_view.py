@@ -16,15 +16,16 @@ class HomeView(ctk.CTkFrame):
 
         self.columnconfigure(0, weight=1)
         self.columnconfigure(1, weight=0)
-        self.rowconfigure(0, weight=1)
+        self.rowconfigure((0,1), weight=0)
+        self.rowconfigure(2, weight=1)
         
         # Menu no topo 
-        self.top_menu_fr = ctk.CTkFrame(self, width=200, fg_color="transparent")# fg_color="transparent")
-        self.top_menu_fr.grid(row=0, column=1, padx=15, pady=10)
+        self.top_menu_fr = ctk.CTkFrame(self, width=200, fg_color="gray")
+        self.top_menu_fr.grid(row=0, column=0, padx=10, pady=(10,0))
         
         # Frame de conteúdo das "abas"
         self.conteudo_fr = ctk.CTkFrame(self, fg_color="transparent")
-        self.conteudo_fr.grid(row=0, column=0, stick="nsew")
+        self.conteudo_fr.grid(row=1, column=0, stick="nsew")
         
         if "@adm" in username:
             self.show_top_menu_adm()
@@ -40,13 +41,13 @@ class HomeView(ctk.CTkFrame):
     # MENU GERAL (FUNCIONÁRIOS)
     def show_top_menu_geral(self):
         self.btn_rg_lote = ctk.CTkButton(self.top_menu_fr, text="Registrar\n novo lote", command=self.show_rg_lote)
-        self.btn_rg_lote.pack(padx=10, pady=10, expand=True)
+        self.btn_rg_lote.pack(padx=10, pady=5, side="left", expand=True)
         
         self.btn_ger_produtos = ctk.CTkButton(self.top_menu_fr, text="Gerenciar\nProdutos", command=self.show_ger_produtos)
-        self.btn_ger_produtos.pack(padx=10, pady=10, expand=True)
+        self.btn_ger_produtos.pack(padx=10, pady=5, side="left", expand=True)
         
         self.btn_ger_lotes = ctk.CTkButton(self.top_menu_fr, text="Gerenciar\nLotes", command=self.show_ger_estoque)
-        self.btn_ger_lotes.pack(padx=10, pady=10, expand=True)
+        self.btn_ger_lotes.pack(padx=10, pady=5, side="left", expand=True)
         
         
     # MENU ADMINISTRADOR  
@@ -54,7 +55,7 @@ class HomeView(ctk.CTkFrame):
         self.show_top_menu_geral()
         
         self.btn_adm_funcs = ctk.CTkButton(self.top_menu_fr, text="Administrar\nFuncionários", command=self.show_adm_funcs)
-        self.btn_adm_funcs.pack(padx=10, pady=10, expand=True)
+        self.btn_adm_funcs.pack(padx=10, pady=5, side="left", expand=True)
         
         
         

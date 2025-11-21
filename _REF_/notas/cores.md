@@ -9,9 +9,9 @@ Laranjas:
 
 #0B81FD - azul destaque
 
-#B0E0E6 - dundo possível
-^ relação v
-#205D65
+Verdes
+#B0E0E6 -      #9AC3C8     #84A7AB     #6D8A8D     #415254     #2A3537
+#205D65 -      #46C9DB     #3393A0     #2A7983     #174349     #0E282C
 
 
 #FFA500
