@@ -16,15 +16,17 @@ class HomeView(ctk.CTkFrame):
 
         self.columnconfigure(0, weight=1)
         self.columnconfigure(1, weight=0)
-        self.rowconfigure((0,1), weight=0)
-        self.rowconfigure(2, weight=1)
+        self.rowconfigure((0, 2), weight=0)
+        self.rowconfigure(1, weight=1)
         
-        # Menu no topo 
-        self.top_menu_fr = ctk.CTkFrame(self, width=200, fg_color="gray")
-        self.top_menu_fr.grid(row=0, column=0, padx=10, pady=(10,0))
+        # Divisões pricipais da janela
+
+        # Frame - Menu no topo 
+        self.top_menu_fr = ctk.CTkFrame(self, width=200, fg_color="transparent")
+        self.top_menu_fr.grid(row=0, column=0, stick="ns")
         
-        # Frame de conteúdo das "abas"
-        self.conteudo_fr = ctk.CTkFrame(self, fg_color="transparent")
+        # Frame - Conteúdo 
+        self.conteudo_fr = ctk.CTkFrame(self, fg_color='transparent')
         self.conteudo_fr.grid(row=1, column=0, stick="nsew")
         
         if "@adm" in username:
@@ -34,7 +36,12 @@ class HomeView(ctk.CTkFrame):
         
         self.show_rg_lote()
        
-        # criar self.btn_sair
+        # Frame - Rodapé 
+        self.rodape_fr = ctk.CTkFrame(self, fg_color="transparent" , border_width=2, border_color='magenta')
+        self.rodape_fr.grid(row=2, column=0, stick="nsew")
+
+        self.btn_rg_lote = ctk.CTkButton(self.rodape_fr, text="Sair", command=self.sair)
+        self.btn_rg_lote.pack(padx=10, pady=5, side="right", expand=True)
 
 
 
@@ -69,7 +76,7 @@ class HomeView(ctk.CTkFrame):
         self.limpar_conteudo_fr()
         
         self.rg_lote_view = RgLoteView(self.conteudo_fr, self.controller)
-        self.rg_lote_view.pack(padx=10, pady=10, fill="both", expand=True)      
+        self.rg_lote_view.pack(fill="both", expand=True)      
         
         
         
@@ -77,7 +84,7 @@ class HomeView(ctk.CTkFrame):
         self.limpar_conteudo_fr()
         
         self.rg_lote_view = GerProdView(self.conteudo_fr, self.controller)
-        self.rg_lote_view.pack(padx=10, pady=10, fill="both", expand=True)      
+        self.rg_lote_view.pack(fill="both", expand=True)      
         
 
 
@@ -85,7 +92,7 @@ class HomeView(ctk.CTkFrame):
         self.limpar_conteudo_fr()
         
         self.rg_lote_view = GerEstoqueView(self.conteudo_fr, self.controller)
-        self.rg_lote_view.pack(padx=10, pady=10, fill="both", expand=True)      
+        self.rg_lote_view.pack(fill="both", expand=True)      
 
 
 
@@ -94,9 +101,10 @@ class HomeView(ctk.CTkFrame):
         self.limpar_conteudo_fr()
         
         self.rg_lote_view = AdmFuncView(self.conteudo_fr, self.controller)
-        self.rg_lote_view.pack(padx=10, pady=10, fill="both", expand=True)      
+        self.rg_lote_view.pack(fill="both", expand=True)      
     
 
             
             
-    
+    def sair(self):
+        self.controller.sair_show_login()

@@ -16,8 +16,10 @@ class AppController:
         self.produtos_model = ProdutosModel()
         self.root = ctk.CTk()
         self.root.geometry("900x650")
+        self.show_login_view()
+    
 
-        # TELA INICIAL - Tela de login
+    def show_login_view(self):
         self.login_view = LoginView(self.root, self)
         self.login_view.pack(fill="both", expand=True)        
         
@@ -41,7 +43,14 @@ class AppController:
         produtos = self.produtos_model.listar_produtos()
         return produtos
 
+    def sair_show_login(self):
+        self.root.destroy()
+        
+        self.root = ctk.CTk()
+        self.root.geometry("900x650")
+        self.show_login_view()
+
+        self.run()
 
     def run(self):
         self.root.mainloop()
-        

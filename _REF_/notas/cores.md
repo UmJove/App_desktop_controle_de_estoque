@@ -1,7 +1,7 @@
 Laranjas:
 
 #FFA600     #C27E00     #875800     #523500     #322000
-#D59217     #B87E14     #996911   #7E570E     #442F07     #261A04
+#D59217     #B87E14     #996911     #7E570E     #442F07     #261A04
 
 #E8E8E8 - fundo possível
 ^ outro tons pelo adobe v
@@ -27,9 +27,6 @@ Destaque
 off white cinzento - #f9f9f9
 off white amarelado - #fffff4
 
-
-
-"#D59217", "#7E570E"
 
 
 
