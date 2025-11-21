@@ -60,7 +60,9 @@ class AppController:
         produtos = self.produtos_model.listar_produtos()
         return produtos
     
-    
+    # D
+    def excluir_produto(self, id_prod):
+        self.produtos_model.excluir_produto(id_prod)
     
     # CRUD Lote
     

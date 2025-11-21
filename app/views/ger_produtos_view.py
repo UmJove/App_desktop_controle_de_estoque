@@ -92,12 +92,16 @@ class GerProdView(ctk.CTkFrame):
         # self.tabela.column('a', anchor='center', width=15)
         # self.tabela.column('observacao', anchor='center', width=150)   
         
+        
         # Botão
         editar_prod_btns_fr = ctk.CTkFrame(self.prod_treeview_fr, border_width=2)
         editar_prod_btns_fr.grid(row=3, column=0, sticky='nsew')
 
-        btn_editar_prod = ctk.CTkButton(editar_prod_btns_fr, text="Editar prod", )# command=self....)
-        btn_editar_prod.pack()        
+        btn_editar_prod = ctk.CTkButton(editar_prod_btns_fr, text="Editar Produto",  command=self.selecionar_produto_treeview)
+        btn_editar_prod.pack() 
+               
+        btn_del_prod = ctk.CTkButton(editar_prod_btns_fr, text="Deletar Produto",  command=self.excluir_produto)
+        btn_del_prod.pack()        
     
     
     # CADASTRO DE PRODUTO - Formulário        
@@ -133,10 +137,10 @@ class GerProdView(ctk.CTkFrame):
         for record in self.tabela.get_children(): 
             self.tabela.delete(record)
             
-            
-        produtos = self.controller.listar_produtos()
-        
            
+        produtos = []
+        produtos = self.controller.listar_produtos()
+          
         for produto in produtos:
             self.tabela.insert(parent="",
                                index="end", 
@@ -149,9 +153,22 @@ class GerProdView(ctk.CTkFrame):
         nome_prod = self.nome_prod_entry.get()
         qtd_estoque = int(self.qtd_estoq_entry.get())
         self.controller.inserir_produto(nome_prod, qtd_estoque)
-        self.listar_treeview()
         
+        self.listar_treeview() # <<< NAO ESTA FUNCIONANDO  AINDA
+    
+    def selecionar_produto_treeview(self):
+        linha_selec = self.tabela.selection()
+        prod_selec = self.tabela.item(linha_selec, 'values')
+        id_prod = prod_selec[0]
+        
+        print(prod_selec)
+        print(id_prod)
+        return id_prod
 
+    def excluir_produto(self):
+        id_prod = self.selecionar_produto_treeview()
+        self.controller.excluir_produto(id_prod)
+        
     
     # CRUD Produtos
         # FALTA : Excluir produtos
