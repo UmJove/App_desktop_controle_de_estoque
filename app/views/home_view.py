@@ -28,11 +28,15 @@ class HomeView(ctk.CTkFrame):
         # Frame - Conteúdo 
         self.conteudo_fr = ctk.CTkFrame(self, fg_color='transparent')
         self.conteudo_fr.grid(row=1, column=0, stick="nsew")
-        
-        if "@adm" in username:
-            self.show_top_menu_adm()
-        elif not "@adm" in username:
-            self.show_top_menu_geral()
+
+        #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+        self.show_top_menu_adm() # PARA EDITAR SEÇÂO APENAS
+        #<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+        # if "@adm" in username:
+        #     self.show_top_menu_adm()
+        # elif not "@adm" in username:
+        #     self.show_top_menu_geral()
         
         self.show_rg_lote()
        

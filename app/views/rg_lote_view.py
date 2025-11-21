@@ -52,35 +52,30 @@ class RgLoteView(ctk.CTkFrame):
         label_image = ctk.CTkLabel(self.imagem_fr, image=image_lateral, text='')
         label_image.pack(padx=10, pady=10, side='bottom')
 
-        ### REGISTRO DE LOTE - Form
-        cont_row = 0
-        
+        ### REGISTRO DE LOTE - Formuário        
         # Label Seção
         rg_lote_lbl = ctk.CTkLabel(self.rg_lote_form_fr, text='Formulário de recebimento')
-        rg_lote_lbl.grid(row=cont_row, column=0, padx=10, columnspan=2, pady=5)
+        rg_lote_lbl.grid(row=0, column=0, padx=10, columnspan=2, pady=5)
 
-        cont_row += 1
         
         # Selecionar produto
         self.atualizar_opcoes_prod()
         
         selecionar_prod_lbl = ctk.CTkLabel(self.rg_lote_form_fr, text='Produto')
-        selecionar_prod_lbl.grid(row=cont_row, column=0, padx=10, pady=10)
+        selecionar_prod_lbl.grid(row=1, column=0, padx=10, pady=10)
 
         self.selecionar_prod_var = ctk.StringVar(value='Selecionar produto')
         selecionar_prod_combb = ctk.CTkComboBox(self.rg_lote_form_fr, values=self.produto_opcoes, variable=self.selecionar_prod_var)
-        selecionar_prod_combb.grid(row=cont_row, column=1, padx=(5,25), pady=10, sticky='ew')
+        selecionar_prod_combb.grid(row=1, column=1, padx=(5,25), pady=10, sticky='ew')
 
-        cont_row += 1
 
         # Quantidade
         qtd_lbl = ctk.CTkLabel(self.rg_lote_form_fr, text='Quantidade')
-        qtd_lbl.grid(row=cont_row, column=0, padx=10, pady=10)
+        qtd_lbl.grid(row=2, column=0, padx=10, pady=10)
 
         self.qtd_entry = ctk.CTkEntry(self.rg_lote_form_fr, placeholder_text='Quantidade recebida')
-        self.qtd_entry.grid(row=cont_row, column=1, padx=(5,25), pady=10, sticky='ew')
+        self.qtd_entry.grid(row=2, column=1, padx=(5,25), pady=10, sticky='ew')
 
-        cont_row += 1
 
 
         self.check_val_var = ctk.StringVar(value='off')
@@ -90,25 +85,18 @@ class RgLoteView(ctk.CTkFrame):
                                            onvalue='on', 
                                            offvalue='off',
                                            command=self.checar_validade)
-        check_val_chkbox.grid(row=cont_row, column=0, columnspan=2, padx=10, pady=10)
+        check_val_chkbox.grid(row=3, column=0, columnspan=2, padx=10, pady=10)
         
-        cont_row += 1
 
         # Frame para informar data de fabricação e validade
         self.validade_fr = ctk.CTkFrame(self.rg_lote_form_fr, fg_color='transparent', height=10)
-        self.validade_fr.grid(row=cont_row, column=0, columnspan=2,  padx=10, pady=10)
+        self.validade_fr.grid(row=4, column=0, columnspan=2,  padx=10, pady=10)
 
-        cont_row += 1
         
         # botão salvar
         btn_salvar_rg = ctk.CTkButton(self.rg_lote_form_fr, text='Salvar Registro', command=self.registrar_lote_recebido)
-        btn_salvar_rg.grid(row=cont_row, column=0, columnspan=2, padx=10, pady=10)
+        btn_salvar_rg.grid(row=5, column=0, columnspan=2, padx=10, pady=10)
 
-        cont_row += 2
-        
-        # # Cadastrar de Produto
-        # self.cad_prod_fr = CadastroProd(self.geral_fr, self.controller)
-        # self.cad_prod_fr.grid(row=cont_row, column=1, padx=20, pady=(5), sticky='ns')
 
 
     def checar_validade(self):
@@ -117,16 +105,14 @@ class RgLoteView(ctk.CTkFrame):
 
         if precisa_validade == 'on':
             print('Precisa')
-            cont_row = 0
             
             # Fabricação
             fabr_lbl = ctk.CTkLabel(self.validade_fr, text='Fabricação:')
-            fabr_lbl.grid(row=cont_row, column=0, padx=10, pady=3)
+            fabr_lbl.grid(row=0, column=0, padx=10, pady=3)
             
-            cont_row += 1
             
             data_fabr_fr = ctk.CTkFrame(self.validade_fr,)
-            data_fabr_fr.grid(row=cont_row, column=0, padx=10, pady=(0,3))
+            data_fabr_fr.grid(row=1, column=0, padx=10, pady=(0,3))
             
             self.fabr_dia_var = ctk.StringVar(value='dia')
             fabr_dia_combb = ctk.CTkComboBox(data_fabr_fr, 
@@ -151,16 +137,14 @@ class RgLoteView(ctk.CTkFrame):
             fabr_ano_entry.pack(padx=10, pady=(0,3), side='left', fill='x')
 
 
-            cont_row += 1
 
 
             valid_lbl = ctk.CTkLabel(self.validade_fr, text='Validade:')
-            valid_lbl.grid(row=cont_row, column=0, padx=10, pady=(0,3))
+            valid_lbl.grid(row=2, column=0, padx=10, pady=(0,3))
 
-            cont_row += 1
 
             data_valid_fr = ctk.CTkFrame(self.validade_fr,)
-            data_valid_fr.grid(row=cont_row, column=0, padx=10, pady=(0,3))
+            data_valid_fr.grid(row=3, column=0, padx=10, pady=(0,3))
 
             self.valid_dia_var = ctk.StringVar(value='dia')
             valid_dia_combb = ctk.CTkComboBox(data_valid_fr, 

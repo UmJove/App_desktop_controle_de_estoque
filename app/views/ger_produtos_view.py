@@ -40,18 +40,14 @@ class GerProdView(ctk.CTkFrame):
         titulo_pagina = ctk.CTkLabel(self.titulo_fr, text='Gerenciamento de Produtos')
         titulo_pagina.pack()        
     
-    # Treeview de produtos
-        cont_row = 0
-        
+    # Treeview de produtos        
         # Titulo Seção
         titulo_secao = ctk.CTkLabel(self.prod_treeview_fr, text="Produtos Registrados")
-        titulo_secao.grid(row=cont_row, column=0)
-
-        cont_row += 1
+        titulo_secao.grid(row=0, column=0)
 
         # Filtro de ordenação
         ordenacao_fr = ctk.CTkFrame(self.prod_treeview_fr, border_width=2)
-        ordenacao_fr.grid(row=cont_row, column=0, sticky='nsew')
+        ordenacao_fr.grid(row=1, column=0, sticky='nsew')
 
         ordenacao_lbl = ctk.CTkLabel(ordenacao_fr, text='Ordenar por:')
         ordenacao_lbl.pack(padx=(5,0), side="left")      
@@ -64,8 +60,7 @@ class GerProdView(ctk.CTkFrame):
                                             height=20)
         ordenacao_opmenu.pack(padx=(5,0), side="left")      
 
-        cont_row += 1
-
+        # Tabela Treeview
         tabela = ttk.Treeview(self.prod_treeview_fr, 
                               columns=('id', 
                                        'nome_produto', 
@@ -74,11 +69,9 @@ class GerProdView(ctk.CTkFrame):
                                        'a', 
                                        'observacao'), 
                               show='headings')
-        tabela.grid(row=cont_row, column=0, padx=5, sticky='nsew')
+        tabela.grid(row=2, column=0, padx=5, sticky='nsew')
         
-        cont_row += 1
-
-        # Topos
+            # Topos
         tabela.heading('#0', text='')
         tabela.heading('id', text='ID')
         tabela.heading('nome_produto', text='Produto')
@@ -87,7 +80,7 @@ class GerProdView(ctk.CTkFrame):
         tabela.heading('a', text='a')
         tabela.heading('observacao', text='OBS')
 
-        # Colunas
+            # Colunas
         tabela.column('#0', width=0, minwidth=0)
         tabela.column('id', anchor='center', width=25)
         tabela.column('nome_produto', anchor='center', width=180)
@@ -95,9 +88,10 @@ class GerProdView(ctk.CTkFrame):
         tabela.column('lotes_atv', anchor='center', width=100)
         tabela.column('a', anchor='center', width=15)
         tabela.column('observacao', anchor='center', width=150)   
-
+        
+        # Botão
         editar_prod_btns_fr = ctk.CTkFrame(self.prod_treeview_fr, border_width=2)
-        editar_prod_btns_fr.grid(row=cont_row, column=0, sticky='nsew')
+        editar_prod_btns_fr.grid(row=3, column=0, sticky='nsew')
 
         btn_editar_prod = ctk.CTkButton(editar_prod_btns_fr, text="Editar prod", )# command=self....)
         btn_editar_prod.pack()        
@@ -115,30 +109,27 @@ class CadastroProd(ctk.CTkFrame):
         self.configure(border_width=1)
         self.columnconfigure((0,1,2), weight=1)
         ### CADASTRO DE PRODUTO - Form        
-        cont_row2 = 0
         
         cad_prod_lbl = ctk.CTkLabel(self, text='Cadastro de produto')
-        cad_prod_lbl.grid(row=cont_row2, padx=10, columnspan=3, pady=5)
+        cad_prod_lbl.grid(row=0, padx=10, columnspan=3, pady=5)
 
-        cont_row2 += 1
         
         nome_prod_lbl = ctk.CTkLabel(self, text='Produto:')
-        nome_prod_lbl.grid(row=cont_row2, column=0, padx=10, pady=10, sticky='e')
+        nome_prod_lbl.grid(row=1, column=0, padx=10, pady=10, sticky='e')
 
         self.nome_prod_entry = ctk.CTkEntry(self, placeholder_text='Digite o nome do produto')
-        self.nome_prod_entry.grid(row=cont_row2, column=1,  columnspan=2,padx=(0,15), pady=10, sticky='ew')
+        self.nome_prod_entry.grid(row=1, column=1,  columnspan=2,padx=(0,15), pady=10, sticky='ew')
         
-        cont_row2 += 1
         
         qtd_estoq_lbl = ctk.CTkLabel(self, text='Estoque:')
-        qtd_estoq_lbl.grid(row=cont_row2, column=0, padx=10, pady=10, sticky='e')
+        qtd_estoq_lbl.grid(row=2, column=0, padx=10, pady=10, sticky='e')
 
         self.qtd_estoq_entry = ctk.CTkEntry(self, placeholder_text='Qtd inicial', width=80)
-        self.qtd_estoq_entry.grid(row=cont_row2, column=1, padx=0, pady=10, sticky='w')
+        self.qtd_estoq_entry.grid(row=2, column=1, padx=0, pady=10, sticky='w')
 
         # botão salvar
         btn_salvar_rg = ctk.CTkButton(self, text='Cadastrar', command=self.cadastrar_prod)
-        btn_salvar_rg.grid(row=cont_row2, column=2, columnspan=2, padx=10, pady=15)        
+        btn_salvar_rg.grid(row=2, column=2, columnspan=2, padx=10, pady=15)        
     
     def cadastrar_prod(self):
         ...
