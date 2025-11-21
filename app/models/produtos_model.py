@@ -52,9 +52,9 @@ class ProdutosModel:
             """,
             (nome, qtd_estoque)
         )
-        
         self.conn.commit()
         self.conn.close()
+        print('produto cadastrado')
 
     # WRITE (INSERT) - lote
     def inserir_lote(self, produto_id: int, qtd_lote: int, fabricacao:str, validade:str, registro:str, responsavel:str):

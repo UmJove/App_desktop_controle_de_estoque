@@ -39,9 +39,6 @@ class AppController:
             widget.destroy()
 
 
-    def listar_produtos(self):
-        produtos = self.produtos_model.listar_produtos()
-        return produtos
 
     def sair_show_login(self):
         self.root.destroy()
@@ -51,6 +48,26 @@ class AppController:
         self.show_login_view()
 
         self.run()
+
+
+    # CRUD Produto
+    # C
+    def inserir_produto(self, nome_prod, qtd_estoque):
+        self.produtos_model.inserir_produto(nome_prod, qtd_estoque)
+    
+    # R all
+    def listar_produtos(self):
+        produtos = self.produtos_model.listar_produtos()
+        return produtos
+    
+    
+    
+    # CRUD Lote
+    
+    # CRUD Func
+
+
+
 
     def run(self):
         self.root.mainloop()

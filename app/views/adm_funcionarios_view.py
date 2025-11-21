@@ -43,7 +43,8 @@ class AdmFuncView(ctk.CTkFrame):
 
         btn_editar_prod = ctk.CTkButton(self.sub_menu_fr, text='Editar dados',command=lambda: self.show_func_edicao(id_funcionario=None))
         btn_editar_prod.pack(padx=10, pady=5, side='left', expand=True)
-
+        
+        self.show_func_treeview()
    
 
     def show_func_treeview(self):
@@ -166,6 +167,8 @@ class AdmFuncView(ctk.CTkFrame):
         self.controller.limpar_frame(self.conteudo_adm_fr)
 
     def cadastrar_func(self):
+        
+        
         ...
 
 
