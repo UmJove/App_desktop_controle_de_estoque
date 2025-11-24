@@ -1,11 +1,16 @@
 import customtkinter as ctk
 from PIL import Image
 
+from app.controllers.font_controller import Fontes
+
 class LoginView(ctk.CTkFrame):
     def __init__(self, parent, controller):
         super().__init__(parent)
         self.controller = controller
         self.configure(fg_color="transparent")
+
+        # Fonte 
+        self.ft = Fontes()
        
         # Imagem
         login_image = ctk.CTkImage(light_image=Image.open("./assets/imgs/img-login.png"), dark_image=Image.open("./assets/imgs/img-login.png"), size=(350, 350))
@@ -21,15 +26,15 @@ class LoginView(ctk.CTkFrame):
         self.frame_form = ctk.CTkFrame(self.frame, fg_color='transparent') 
         self.frame_form.grid(row=0, column=1, padx=(50, 0))
 
-        footer_label = ctk.CTkLabel(self.frame, text="Sistema de Gestão de Estoque | Desenvolvido por @UmJove | 2025")
+        footer_label = ctk.CTkLabel(self.frame, text="Sistema de Gestão de Estoque | Desenvolvido por @UmJove | 2025", text_color=self.ft.txt_claro)
         footer_label.grid(row=1, column=0, columnspan=2, pady=(100,0))
 
         # Widgets
         label_image = ctk.CTkLabel(self.frame_image, image=login_image, text='')
         label_image.pack()
 
-        self.title = ctk.CTkLabel(self.frame_form, text="Faça login", font=("arial bold", 20))
-        self.title.pack()
+        self.title = ctk.CTkLabel(self.frame_form, text="Página de Login",  font=self.ft.titulo, text_color=self.ft.txt_claro)
+        self.title.pack(pady=(0,10))
 
         self.username_entry = ctk.CTkEntry(self.frame_form, placeholder_text="nome de usuário", width=200)
         self.username_entry.pack(pady=(20, 20))
@@ -37,8 +42,8 @@ class LoginView(ctk.CTkFrame):
         self.password_entry = ctk.CTkEntry(self.frame_form, placeholder_text="senha", width=200, show="*")
         self.password_entry.pack(pady=(10, 20))
 
-        self.error_label = ctk.CTkLabel(self.frame_form, text=" ")
-        self.error_label.pack()
+        # self.error_label = ctk.CTkLabel(self.frame_form, text=" ")
+        # self.error_label.pack()
 
         self.btn_entrar = ctk.CTkButton(self.frame_form, text="Entrar", width=200, command=self.attempt_login)
         self.btn_entrar.pack(pady=(10, 20))

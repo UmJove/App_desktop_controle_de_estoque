@@ -1,6 +1,7 @@
 import customtkinter as ctk
 from tkinter import ttk
 
+from app.controllers.font_controller import Fontes
 
 
 
@@ -9,6 +10,9 @@ class GerProdView(ctk.CTkFrame):
         super().__init__(parent)
         self.controller = controller
         self.parent = parent
+
+        self.ft = Fontes()
+
 
         self.configure(fg_color='transparent')# , border_width=2, border_color='magenta')
 
@@ -39,8 +43,8 @@ class GerProdView(ctk.CTkFrame):
 
     # Título da página
 
-        titulo_pagina = ctk.CTkLabel(self.titulo_fr, text='Gerenciamento de Produtos')
-        titulo_pagina.pack()        
+        titulo_pagina = ctk.CTkLabel(self.titulo_fr, text='Gerenciamento de Produtos', font=self.ft.titulo, text_color=self.ft.txt_claro)
+        titulo_pagina.pack(pady=(0,10))       
     
     # Treeview de produtos        
         # Titulo Seção
@@ -94,14 +98,14 @@ class GerProdView(ctk.CTkFrame):
         
         
         # Botão
-        editar_prod_btns_fr = ctk.CTkFrame(self.prod_treeview_fr, border_width=2)
-        editar_prod_btns_fr.grid(row=3, column=0, sticky='nsew')
+        editar_prod_btns_fr = ctk.CTkFrame(self.prod_treeview_fr,  border_width=2, border_color='magenta')
+        editar_prod_btns_fr.grid(row=3, column=0, sticky='ns')
 
         btn_editar_prod = ctk.CTkButton(editar_prod_btns_fr, text="Editar Produto",  command=self.selecionar_produto_treeview)
-        btn_editar_prod.pack() 
+        btn_editar_prod.pack(padx=10, side='left') 
                
         btn_del_prod = ctk.CTkButton(editar_prod_btns_fr, text="Deletar Produto",  command=self.excluir_produto)
-        btn_del_prod.pack()        
+        btn_del_prod.pack(padx=10, side='left')        
     
     
     # CADASTRO DE PRODUTO - Formulário        

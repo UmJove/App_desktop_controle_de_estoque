@@ -1,6 +1,7 @@
 import customtkinter as ctk
 from tkinter import ttk
 
+from app.controllers.font_controller import Fontes
 
 
 class GerEstoqueView(ctk.CTkFrame):
@@ -9,6 +10,9 @@ class GerEstoqueView(ctk.CTkFrame):
         self.controller = controller
         self.parent = parent
         
+        self.ft = Fontes()
+
+
         self.configure(fg_color='transparent', border_width=2, border_color='magenta')
 
         self.geral_fr = ctk.CTkFrame(self, fg_color='transparent' , border_width=2, border_color='magenta')
@@ -32,9 +36,9 @@ class GerEstoqueView(ctk.CTkFrame):
         self.lotes_treeview_fr.rowconfigure((2), weight=1)                
 
     # Título da página
-        titulo_pagina = ctk.CTkLabel(self.titulo_fr, text='Gerenciamento de Lotes')
-        titulo_pagina.pack()     
-
+        titulo_pagina = ctk.CTkLabel(self.titulo_fr, text='Gerenciamento de Lotes', font=self.ft.titulo, text_color=self.ft.txt_claro)
+        titulo_pagina.pack(pady=(0,10))
+        
     # Treeview de lotes
         cont_row = 0
         

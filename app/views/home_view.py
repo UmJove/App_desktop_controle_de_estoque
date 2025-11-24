@@ -4,7 +4,6 @@ from app.views.ger_produtos_view import GerProdView
 from app.views.ger_estoque_view import GerEstoqueView
 from app.views.adm_funcionarios_view import AdmFuncView
 
-
 class HomeView(ctk.CTkFrame):
     # def __init__(self, user, parent, controller):
     def __init__(self, controller, parent, username):

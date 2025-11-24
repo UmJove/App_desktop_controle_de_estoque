@@ -5,7 +5,7 @@ BOLD   = "bold"
 ITALIC = "italic"
 
 
-f = Font(family="times", size=30, weight=NORMAL)
+font_titulo = CtkFont(family="Segoe UI Black", size=20, weight=NORMAL)
 
 Segoe UI
 Segoe UI Black

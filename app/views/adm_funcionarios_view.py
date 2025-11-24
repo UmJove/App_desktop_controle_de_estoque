@@ -1,12 +1,17 @@
 import customtkinter as ctk
 from tkinter import ttk
 
+from app.controllers.font_controller import Fontes
+
 
 class AdmFuncView(ctk.CTkFrame):
     def __init__(self, parent, controller):
         super().__init__(parent)
         self.controller = controller
         self.parent = parent
+
+        self.ft = Fontes()
+
 
         self.configure(fg_color='transparent', border_width=2, border_color='yellow')
 
@@ -31,8 +36,8 @@ class AdmFuncView(ctk.CTkFrame):
 
 
     # Título da página
-        titulo_pagina = ctk.CTkLabel(self.titulo_fr, text='Gerenciamento de Funcionários')
-        titulo_pagina.pack()        
+        titulo_pagina = ctk.CTkLabel(self.titulo_fr, text='Gerenciamento de Funcionários', font=self.ft.titulo, text_color=self.ft.txt_claro)
+        titulo_pagina.pack(pady=(0,10))
     
     # Sub Menu Adm
         btn_editar_prod = ctk.CTkButton(self.sub_menu_fr, text='Visualizar Funcionários', command=self.show_func_treeview)

@@ -1,8 +1,9 @@
 import customtkinter as ctk
 from PIL import Image
 
+from app.controllers.font_controller import Fontes
 
-# from app.views.ger_produtos_view import CadastroProd
+
 
 
 class RgLoteView(ctk.CTkFrame):
@@ -10,6 +11,9 @@ class RgLoteView(ctk.CTkFrame):
         super().__init__(parent)
         self.controller = controller
         self.parent = parent
+        
+        self.ft = Fontes()
+
         
         self.configure(fg_color='transparent')# , border_width=2, border_color='magenta')
         self.geral_fr = ctk.CTkFrame(self, fg_color='transparent')# , border_width=2, border_color='magenta')
@@ -44,9 +48,9 @@ class RgLoteView(ctk.CTkFrame):
         self.rg_lote_form_fr.columnconfigure((0,1), weight=1)
 
 
-        # Título        
-        titulo_pagina = ctk.CTkLabel(self.titulo_fr, text='Registro de Lotes')
-        titulo_pagina.pack()
+        # Título da página
+        titulo_pagina = ctk.CTkLabel(self.titulo_fr, text='Registro de Lotes', font=self.ft.titulo, text_color=self.ft.txt_claro)
+        titulo_pagina.pack(pady=(0,10))
         
         # Imagem lateral
         label_image = ctk.CTkLabel(self.imagem_fr, image=image_lateral, text='')
