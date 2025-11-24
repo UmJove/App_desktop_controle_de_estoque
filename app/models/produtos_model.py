@@ -17,7 +17,7 @@ class ProdutosModel:
             """
                 CREATE TABLE IF NOT EXISTS produto(
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    nome TEXT NOT NULL,
+                    nome TEXT NOT NULL UNIQUE,
                     qtd_estoque INTEGER NOT NULL
                     )
             """
@@ -42,7 +42,7 @@ class ProdutosModel:
         self.conn.commit()
         self.conn.close()
     
-    # WRITE (INSERT) - produto
+    # CREATE (INSERT) - produto
     def inserir_produto(self, nome, qtd_estoque):
         self.connect()        
         
@@ -56,7 +56,7 @@ class ProdutosModel:
         self.conn.close()
         print('produto cadastrado')
 
-    # WRITE (INSERT) - lote
+    # CREATE (INSERT) - lote
     def inserir_lote(self, produto_id: int, qtd_lote: int, fabricacao:str, validade:str, registro:str, responsavel:str):
         self.connect()        
         

@@ -10,7 +10,6 @@ class HomeView(ctk.CTkFrame):
         super().__init__(parent)
         self.controller = controller
         self.parent = parent
-        self.user = username
         self.configure(fg_color="transparent")
 
         self.columnconfigure(0, weight=1)
@@ -29,13 +28,13 @@ class HomeView(ctk.CTkFrame):
         self.conteudo_fr.grid(row=1, column=0, stick="nsew")
 
         #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-        self.show_top_menu_adm() # PARA EDITAR SEÇÂO APENAS
+        # self.show_top_menu_adm() # PARA EDITAR SEÇÂO APENAS
         #<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-        # if "@adm" in username:
-        #     self.show_top_menu_adm()
-        # elif not "@adm" in username:
-        #     self.show_top_menu_geral()
+        if "@adm" in self.controller.username:
+            self.show_top_menu_adm()
+        elif not "@adm" in self.controller.username:
+            self.show_top_menu_geral()
         
         self.show_rg_lote()
        

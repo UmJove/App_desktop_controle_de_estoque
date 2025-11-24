@@ -25,6 +25,7 @@ class AppController:
         
     # Controle de login do usuário
     def login(self, username, password):
+        self.username = "@adm"
         password = None
         self.show_home(username)
                 
@@ -51,7 +52,7 @@ class AppController:
 
 
     # CRUD Produto
-    # C
+    # C produto
     def inserir_produto(self, nome_prod, qtd_estoque):
         self.produtos_model.inserir_produto(nome_prod, qtd_estoque)
     
@@ -65,7 +66,10 @@ class AppController:
         self.produtos_model.excluir_produto(id_prod)
     
     # CRUD Lote
-    
+    # C lote
+    def inserir_lote(self, produto_id, qtd_lote, fabricacao, validade, registro, responsavel):
+        self.produtos_model.inserir_lote(produto_id, qtd_lote, fabricacao, validade, registro, responsavel)
+
     # CRUD Func
 
 

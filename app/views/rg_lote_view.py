@@ -1,5 +1,6 @@
 import customtkinter as ctk
 from PIL import Image
+from datetime import datetime
 
 from app.controllers.font_controller import Fontes
 
@@ -21,9 +22,11 @@ class RgLoteView(ctk.CTkFrame):
 
         self.produtos = self.controller.listar_produtos()
         self.dias = []
-        self.meses = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez']
+        self.meses = []
         for dia in range(1, 32):
-            self.dias.append(str(dia))
+            self.dias.append(str(dia).zfill(2))
+        for mes in range(1, 13):
+            self.meses.append(str(mes).zfill(2))
 
         # Imagem
         image_lateral = ctk.CTkImage(light_image=Image.open('./assets/imgs/img-rg-lateral.png'), dark_image=Image.open('./assets/imgs/img-rg-lateral.png'), size=(150, 200))
@@ -69,8 +72,8 @@ class RgLoteView(ctk.CTkFrame):
         selecionar_prod_lbl.grid(row=1, column=0, padx=10, pady=10)
 
         self.selecionar_prod_var = ctk.StringVar(value='Selecionar produto')
-        selecionar_prod_combb = ctk.CTkComboBox(self.rg_lote_form_fr, values=self.produto_opcoes, variable=self.selecionar_prod_var)
-        selecionar_prod_combb.grid(row=1, column=1, padx=(5,25), pady=10, sticky='ew')
+        self.selecionar_prod_combb = ctk.CTkComboBox(self.rg_lote_form_fr, values=self.produto_opcoes, variable=self.selecionar_prod_var)
+        self.selecionar_prod_combb.grid(row=1, column=1, padx=(5,25), pady=10, sticky='ew')
 
 
         # Quantidade
@@ -134,13 +137,14 @@ class RgLoteView(ctk.CTkFrame):
                                              height=20)
             fabr_mes_combb.pack(padx=10, pady=(0,3), side='left', fill='x')
 
-            fabr_ano_entry = ctk.CTkEntry(data_fabr_fr, 
+            self.fabr_ano_entry = ctk.CTkEntry(data_fabr_fr, 
                                           placeholder_text='ano', 
                                           width=60, 
                                           height=20)
-            fabr_ano_entry.pack(padx=10, pady=(0,3), side='left', fill='x')
+            self.fabr_ano_entry.pack(padx=10, pady=(0,3), side='left', fill='x')
 
 
+            # Validade
 
 
             valid_lbl = ctk.CTkLabel(self.validade_fr, text='Validade:')
@@ -166,11 +170,11 @@ class RgLoteView(ctk.CTkFrame):
                                              height=20)
             valid_mes_combb.pack(padx=10, pady=(0,3), side='left', fill='x')
 
-            valid_ano_entry = ctk.CTkEntry(data_valid_fr, 
+            self.valid_ano_entry = ctk.CTkEntry(data_valid_fr, 
                                           placeholder_text='ano', 
                                           width=60, 
                                           height=20)
-            valid_ano_entry.pack(padx=10, pady=(0,3), side='left', fill='x')
+            self.valid_ano_entry.pack(padx=10, pady=(0,3), side='left', fill='x')
 
 
             # ctk.CTkEntry(self.rg_lote_form_fr, placeholder_text=)
@@ -179,12 +183,27 @@ class RgLoteView(ctk.CTkFrame):
             self.validade_fr.configure(height=10)
 
     def registrar_lote_recebido(self):
-        ...
+        produto = self.selecionar_prod_combb.get()
+        produto_id = self.dic_produto_opcoes[produto]
+        qtd_lote = self.qtd_entry.get()
+
+        fabricacao = f"{self.fabr_ano_entry.get()}-{self.fabr_mes_var.get()}-{self.fabr_dia_var.get()}"
+        validade = f"{self.valid_ano_entry.get()}-{self.valid_mes_var.get()}-{self.valid_dia_var.get()}"
+        registro = str(datetime.now())
+        responsavel = self.controller.username
+
+        print()
+        print(produto_id,"--", produto,"--", qtd_lote,"--", fabricacao,"--", validade,"--", registro, "--", responsavel)
+        
+        self.controller.inserir_lote(produto_id, qtd_lote, fabricacao, validade, registro, responsavel)
+
 
 
     def atualizar_opcoes_prod(self):
+        self.dic_produto_opcoes = {}        
         self.produto_opcoes = []
         for produto in self.produtos:
+            self.dic_produto_opcoes[produto[1]] = produto[0]
             self.produto_opcoes.append(produto[1])
-        print(self.produto_opcoes)
+
     
