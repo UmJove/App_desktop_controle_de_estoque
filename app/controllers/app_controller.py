@@ -6,6 +6,11 @@ from app.models.produtos_model import ProdutosModel
 from app.views.login_view import LoginView
 from app.views.home_view import HomeView
 
+from app.views.rg_lote_view import RgLoteView
+from app.views.ger_produtos_view import GerProdView
+from app.views.ger_estoque_view import GerEstoqueView
+from app.views.adm_funcionarios_view import AdmFuncView
+
 
 class AppController:
     def __init__(self):
@@ -39,6 +44,29 @@ class AppController:
         for widget in frame.winfo_children():
             widget.destroy()
 
+    def show_rg_lote(self, conteudo_fr):
+        self.limpar_frame(conteudo_fr)
+
+        self.rg_lote_view = RgLoteView(conteudo_fr, self)
+        self.rg_lote_view.pack(fill="both", expand=True) 
+
+    def show_ger_produtos(self, conteudo_fr):
+        self.limpar_frame(conteudo_fr)
+
+        self.ger_produtos_view = GerProdView(conteudo_fr, self)
+        self.ger_produtos_view.pack(fill="both", expand=True) 
+
+    def show_adm_funcs(self, conteudo_fr):
+        self.limpar_frame(conteudo_fr)
+
+        self.adm_funcs_view = GerEstoqueView(conteudo_fr, self)
+        self.adm_funcs_view.pack(fill="both", expand=True) 
+
+    def show_adm_funcs(self, conteudo_fr):
+        self.limpar_frame(conteudo_fr)
+
+        self.rg_adm_funcs = AdmFuncView(conteudo_fr, self)
+        self.rg_adm_funcs.pack(fill="both", expand=True) 
 
 
     def sair_show_login(self):
@@ -51,17 +79,27 @@ class AppController:
         self.run()
 
 
+
     # CRUD Produto
-    # C produto
+    # Create produto
     def inserir_produto(self, nome_prod, qtd_estoque):
         self.produtos_model.inserir_produto(nome_prod, qtd_estoque)
     
-    # R all
+    # Read listar produtos
     def listar_produtos(self):
         produtos = self.produtos_model.listar_produtos()
         return produtos
     
-    # D
+    # Read selecionar produto
+    def selecionar_produto(self, produto_id):
+        produto_selecionado = self.produtos_model(produto_id)
+        return produto_selecionado
+    
+    # Update produto
+    def atualizar_produto(self, produto_id, novo_nome, nova_qtd_estoque):
+        self.produtos_model.atualizar_produto(produto_id, novo_nome, nova_qtd_estoque)
+
+    # Delete produto
     def excluir_produto(self, id_prod):
         self.produtos_model.excluir_produto(id_prod)
     

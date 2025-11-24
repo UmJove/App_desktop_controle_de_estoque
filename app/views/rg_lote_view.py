@@ -192,10 +192,13 @@ class RgLoteView(ctk.CTkFrame):
         registro = str(datetime.now())
         responsavel = self.controller.username
 
-        print()
-        print(produto_id,"--", produto,"--", qtd_lote,"--", fabricacao,"--", validade,"--", registro, "--", responsavel)
         
+        # Create novo lote
         self.controller.inserir_lote(produto_id, qtd_lote, fabricacao, validade, registro, responsavel)
+        
+
+
+        
 
 
 

@@ -1,8 +1,5 @@
 import customtkinter as ctk
-from app.views.rg_lote_view import RgLoteView
-from app.views.ger_produtos_view import GerProdView
-from app.views.ger_estoque_view import GerEstoqueView
-from app.views.adm_funcionarios_view import AdmFuncView
+
 
 class HomeView(ctk.CTkFrame):
     # def __init__(self, user, parent, controller):
@@ -27,9 +24,6 @@ class HomeView(ctk.CTkFrame):
         self.conteudo_fr = ctk.CTkFrame(self, fg_color='transparent')
         self.conteudo_fr.grid(row=1, column=0, stick="nsew")
 
-        #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-        # self.show_top_menu_adm() # PARA EDITAR SEÇÂO APENAS
-        #<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
         if "@adm" in self.controller.username:
             self.show_top_menu_adm()
@@ -71,39 +65,23 @@ class HomeView(ctk.CTkFrame):
     # limpar frame de conteúdo
     def limpar_conteudo_fr(self):
         self.controller.limpar_frame(self.conteudo_fr)
-
-                       
+             
     
-    def show_rg_lote(self):
-        self.limpar_conteudo_fr()
-        
-        self.rg_lote_view = RgLoteView(self.conteudo_fr, self.controller)
-        self.rg_lote_view.pack(fill="both", expand=True)      
-        
-        
+    def show_rg_lote(self):        
+        self.controller.show_rg_lote(self.conteudo_fr)
+
         
     def show_ger_produtos(self):
-        self.limpar_conteudo_fr()
-        
-        self.rg_lote_view = GerProdView(self.conteudo_fr, self.controller)
-        self.rg_lote_view.pack(fill="both", expand=True)      
-        
-
+        self.controller.show_ger_produtos(self.conteudo_fr)
+  
 
     def show_ger_estoque(self):
-        self.limpar_conteudo_fr()
+        self.controller.show_ger_estoque(self.conteudo_fr)        
         
-        self.rg_lote_view = GerEstoqueView(self.conteudo_fr, self.controller)
-        self.rg_lote_view.pack(fill="both", expand=True)      
-
-
-
         
     def show_adm_funcs(self):
-        self.limpar_conteudo_fr()
-        
-        self.rg_lote_view = AdmFuncView(self.conteudo_fr, self.controller)
-        self.rg_lote_view.pack(fill="both", expand=True)      
+        self.controller.show_adm_funcs(self.conteudo_fr)
+
     
 
             
